@@ -1,7 +1,5 @@
 package Matrix;
 
-import java.security.PublicKey;
-
 public class MatrixOperations {
     public static void printMatrix(double[][] matrix){
         for (int i =0; i<matrix.length;i++){
@@ -389,6 +387,7 @@ public class MatrixOperations {
             }
         }
         private static MatrixAsVector winners;
+        private static MatrixAsVector winners1;
         private static MatrixAsVector losers;
         private static MatrixAsVector mainMatrix;
         private static int countRecurrent;
@@ -397,10 +396,9 @@ public class MatrixOperations {
         private static int looseIndex;
         private static boolean isLowLeftNull;
         private static boolean isLowRightNull;
-        private static int sortTourRecurrentNum =0;
         public static double[][] sortTournament(double[][] mas){
-            sortTourRecurrentNum++;
                 winners = new MatrixAsVector(new double[mas.length][mas[0].length]);
+                winners1 = new MatrixAsVector(new double[mas.length][mas[0].length]);
                 losers = new MatrixAsVector(new double[mas.length][mas[0].length]);
                 mainMatrix = new MatrixAsVector(mas);
                 countRecurrent = 0;
@@ -420,20 +418,16 @@ public class MatrixOperations {
                     TourTree.setRight(mainMatrix.getElement(3));
                     mainMasIndex = 4;
                     recurrentTree(TourTree.Region.nextRegion());
-                    if(sortTourRecurrentNum<100) {
+                    if(looseIndex!=0) {
                         for (int i = 0; i < looseIndex; i++) {
                             mainMatrix.setElement(i, losers.getElement(i));
                         }
                         for (int i = 0; i < winIndex; i++) {
                             mainMatrix.setElement(i + looseIndex, winners.getElement(i));
                         }
-//                        MatrixOperations.printMatrix(mainMatrix.getMatrix());
-//                        System.out.println("===========================");
-                        sortTournament(mainMatrix.getMatrix());
-                    }else sortTourRecurrentNum=0;
+                            sortTournament(mainMatrix.getMatrix());
+                    }
                 } else System.out.println("Array is too short");
-//            MatrixOperations.printMatrix(losers.getMatrix());
-//            System.out.println("==========================================");
             return winners.getMatrix();
         }
 

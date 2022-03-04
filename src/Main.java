@@ -8,7 +8,6 @@ public class Main {
         MatrixAsVector matrix1015 = new MatrixAsVector(mg1015.getRandMatrix());
         MatrixGenerator mg2020 = new MatrixGenerator(20,20,1000,-1000);
         MatrixAsVector matrix2020 = new MatrixAsVector(mg2020.getRandMatrix());
-//        MatrixOperations.printMatrix(matrix1015.getMatrix());
         long start1 = System.currentTimeMillis();
         double[][] mBubble = MatrixOperations.sortBubble(matrix2020.getMatrix());
         long finish1 = System.currentTimeMillis();
