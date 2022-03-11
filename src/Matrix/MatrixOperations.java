@@ -102,6 +102,288 @@ public class MatrixOperations {
         }
         return mat.getMatrix();
     }
+
+
+
+public class Quick {
+        static MatrixAsVector matrix;
+        public static double[][] quickSort(double[][] mas){
+            matrix = new MatrixAsVector(mas);
+            quickSortRec(0, matrix.getLength()-1);
+            return matrix.getMatrix();
+        }
+    private static void quickSortRec(int startIndex, int finishIndex) {
+
+        int leftMarker = startIndex;
+        int rightMarker = finishIndex;
+        double pivot = matrix.getElement((leftMarker + rightMarker) / 2);
+        while (leftMarker <= rightMarker){
+
+            while (matrix.getElement(leftMarker) < pivot) {
+                leftMarker++;
+            }
+
+            while (matrix.getElement(rightMarker) > pivot) {
+                rightMarker--;
+            }
+
+
+
+                if (leftMarker < rightMarker) {
+                    matrix.swap(leftMarker,rightMarker);
+                }
+
+                leftMarker++;
+                rightMarker--;
+
+        }
+
+
+        if (leftMarker < finishIndex) {
+            quickSortRec(leftMarker, finishIndex);
+        }
+        if (startIndex< rightMarker) {
+            quickSortRec(startIndex, rightMarker);
+        }
+//        boolean isLeftDone = false;
+//        boolean isRightDone = false;
+//        boolean isCursorsNear = false;
+//        boolean stopCycle = false;
+//        int pivot = (finishIndex - startIndex) / 2;
+//        matrix.swap(pivot, finishIndex);
+//        pivot = finishIndex;
+//
+//        int leftCursor = startIndex;
+//        int rightCursor = finishIndex - 1;
+//
+//
+////        if (finishIndex - startIndex > 1) {
+//            while (!stopCycle) {
+//                if (rightCursor - leftCursor == 1) {
+//                    isCursorsNear = true;
+//                }
+//                if (matrix.getElement(leftCursor) >= matrix.getElement(pivot)) {
+//                    isLeftDone = true;
+//                } else {
+//                    if (!isCursorsNear) {
+//                        leftCursor++;
+//                    }
+//                }
+//                if (rightCursor - leftCursor == 1) {
+//                    isCursorsNear = true;
+//                }
+//                if (matrix.getElement(rightCursor) < matrix.getElement(pivot)) {
+//                    isRightDone = true;
+//                } else {
+//                    if (!isCursorsNear) {
+//                        if (rightCursor > 1) {
+//                            rightCursor--;
+//                        }
+//                    }
+//                }
+//                if (rightCursor - leftCursor == 1) {
+//                    isCursorsNear = true;
+//                }
+//                if (isRightDone && isLeftDone) {
+//                    matrix.swap(leftCursor, rightCursor);
+//                    isLeftDone = false;
+//                    isRightDone = false;
+//                }
+//                if (isCursorsNear) {
+//                    if (matrix.getElement(leftCursor) <= matrix.getElement(pivot) && matrix.getElement(rightCursor) > matrix.getElement(pivot)) {
+//                        while (pivot != rightCursor) {
+//                            matrix.swap(pivot, pivot - 1);
+//                            pivot--;
+//                        }
+//                        stopCycle = true;
+//                    }else
+//                    if (matrix.getElement(leftCursor) >= matrix.getElement(pivot) && matrix.getElement(rightCursor) < matrix.getElement(pivot)) {
+//                        matrix.swap(leftCursor, rightCursor);
+//                        while (pivot != rightCursor) {
+//                            matrix.swap(pivot, pivot - 1);
+//                            pivot--;
+//                        }
+//                        stopCycle = true;
+//                    }else
+//                    if (matrix.getElement(leftCursor) >= matrix.getElement(pivot) && matrix.getElement(rightCursor) > matrix.getElement(pivot)) {
+//                        while (pivot != leftCursor) {
+//                            matrix.swap(pivot, pivot - 1);
+//                            pivot--;
+//                        }
+//                        stopCycle = true;
+//                    }else
+//                    if (matrix.getElement(leftCursor) <= matrix.getElement(pivot) && matrix.getElement(rightCursor) < matrix.getElement(pivot)) {
+//                        while (pivot != rightCursor + 1) {
+//                            matrix.swap(pivot, pivot - 1);
+//                            pivot--;
+//                        }
+//                        stopCycle = true;
+//                    }
+//                }
+//
+//            }
+////        }
+//
+//        //ПОЧЕМУ ТЫ НЕ ВЫХОДИШЬ ИЗ РЕКУРСИИ СУЧАРА??????????????????????
+//
+////        if(pivot > 0 && pivot<finishIndex){
+////
+////        }else if(pivot ==0){
+////            startIndex = 1;
+////        }else if(pivot ==finishIndex){
+////            startIndex = 0;
+////            finishIndex=pivot-1;
+////        }
+//
+////        if (finishIndex - startIndex > 1) {
+////            System.out.println("pivot " + pivot + " = " + matrix.getElement(pivot) + " startIndex = " + startIndex + " finishIndex = " + finishIndex);
+////            if (pivot > 0 && pivot < finishIndex) {
+//               if(pivot-1>1) {
+//                   if(pivot-1-startIndex>1) {
+//                       quickSortRec(startIndex, pivot - 1);
+//                   }
+//               }
+//               if((finishIndex - (pivot+1))>1) {
+//                   quickSortRec(pivot + 1, finishIndex);
+//               }
+//
+////            } else if (pivot == 0) {
+////                System.out.println("start3");
+////                quickSort(matrix.getMatrix(), 1, finishIndex);
+////                System.out.println("finish3");
+////
+////            } else if (pivot == finishIndex) {
+////                System.out.println("start4");
+////                quickSort(matrix.getMatrix(), 0, finishIndex - 1);
+////                System.out.println("finish4");
+////
+////            }
+////        }
+
+
+    }
+}
+
+    public static class Heap{
+        /*Arr[(i-1)/2]	Returns the parent node
+            Arr[(2*i)+1]	Returns the left child node
+            Arr[(2*i)+2]	Returns the right child node*/
+
+            static MatrixAsVector matrix;
+
+
+            private static int getLeftChildIndex(int parentIndex){return (2*parentIndex)+1;}
+            private static int getRightChildIndex(int parentIndex){return (2*parentIndex)+2;}
+            private static int getParentIndex(int childIndex){return (childIndex-1)/2;}
+            private static int currChildIndex;
+            private static int endIndex;
+            private static boolean isChildHasChildren = false;
+            private static boolean isLeftChanged = false;
+            private static boolean isRightChanged = false;
+            private static boolean isOnlyChildSwap=false;
+
+
+        public static double[][] heapSort(double[][] mas){
+            matrix = new MatrixAsVector(mas);
+            currChildIndex = matrix.getLength() - 2;
+            endIndex = matrix.getLength() - 1;
+            isOnlyChildSwap=false;
+            while (endIndex>0){
+                heapRecurrent(getParentIndex(currChildIndex));
+                matrix.swap(0,endIndex);
+                endIndex--;
+                isOnlyChildSwap=true;
+                currChildIndex=1;
+            }
+            return matrix.getMatrix();
+
+        }
+
+
+            private static void heapRecurrent(int parentIndex ){
+                if((getLeftChildIndex(parentIndex)<endIndex) && (getRightChildIndex(parentIndex)<endIndex)) {
+                    isLeftChanged = false;
+                    isRightChanged = false;
+                    if (matrix.getElement(getLeftChildIndex(parentIndex)) < matrix.getElement(parentIndex)) {
+                        if (matrix.getElement(getLeftChildIndex(parentIndex)) < matrix.getElement(getRightChildIndex(parentIndex))) {
+                            matrix.swap(getLeftChildIndex(parentIndex), parentIndex);
+                            isLeftChanged = true;
+                        } else {
+                            matrix.swap(getRightChildIndex(parentIndex), parentIndex);
+                            isRightChanged = true;
+                        }
+                    } else if (matrix.getElement(getRightChildIndex(parentIndex)) < matrix.getElement(parentIndex)) {
+                        if (matrix.getElement(getRightChildIndex(parentIndex)) < matrix.getElement(getLeftChildIndex(parentIndex))) {
+                            matrix.swap(getRightChildIndex(parentIndex), parentIndex);
+                            isRightChanged = true;
+                        } else {
+                            matrix.swap(getLeftChildIndex(parentIndex), parentIndex);
+                            isLeftChanged = true;
+                        }
+                    }
+
+
+                    if (isLeftChanged) {
+                        if (getRightChildIndex(getLeftChildIndex(parentIndex)) < endIndex || getLeftChildIndex(getLeftChildIndex(parentIndex)) < endIndex) {
+                            isChildHasChildren = true;
+                            int tmpChildIndex = getLeftChildIndex(parentIndex);
+                            heapRecurrent(tmpChildIndex);
+                            isLeftChanged = false;
+                            isRightChanged = false;
+                            isChildHasChildren = false;
+                        }
+                    } else if (isRightChanged) {
+                        if (getRightChildIndex(getRightChildIndex(parentIndex)) < endIndex || getLeftChildIndex(getRightChildIndex(parentIndex)) < endIndex) {
+                            isChildHasChildren = true;
+                            int tmpChildIndex = getRightChildIndex(parentIndex);
+                            heapRecurrent(tmpChildIndex);
+                            isLeftChanged = false;
+                            isRightChanged = false;
+                            isChildHasChildren = false;
+                        }
+                    } else {
+                        isChildHasChildren = false;
+                    }
+
+
+                    if (!isChildHasChildren && (!isOnlyChildSwap)) {
+                        if (currChildIndex > 0) {
+                            currChildIndex--;
+                            heapRecurrent(getParentIndex(currChildIndex));
+                        }
+                    }
+                }
+
+
+            }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static class Tournament{
         /*Рекуррентный алгоритм:
         *Меняем region

@@ -8,6 +8,8 @@ public class Main {
         MatrixAsVector matrix1015 = new MatrixAsVector(mg1015.getRandMatrix());
         MatrixGenerator mg2020 = new MatrixGenerator(20,20,1000,-1000);
         MatrixAsVector matrix2020 = new MatrixAsVector(mg2020.getRandMatrix());
+        MatrixGenerator mg65 = new MatrixGenerator(6,5,500,-500);
+        MatrixAsVector matrix65 = new MatrixAsVector(mg65.getRandMatrix());
         long start1 = System.currentTimeMillis();
         double[][] mBubble = MatrixOperations.sortBubble(matrix2020.getMatrix());
         long finish1 = System.currentTimeMillis();
@@ -33,6 +35,18 @@ public class Main {
         long finish = System.currentTimeMillis();
         long elapsed = finish - start;
         System.out.println("Прошло времени, мс (tournament): " + elapsed);
+        long start5 = System.currentTimeMillis();
+        double[][] mQuick = MatrixOperations.Quick.quickSort(matrix2020.getMatrix());
+        long finish5 = System.currentTimeMillis();
+        long elapsed5 = finish5 - start5;
+        System.out.println("Прошло времени, мс (quick): " + elapsed5);
+        long start6 = System.currentTimeMillis();
+        double[][] mHeap = MatrixOperations.Heap.heapSort(matrix2020.getMatrix());
+        long finish6 = System.currentTimeMillis();
+        long elapsed6 = finish6 - start6;
+        System.out.println("Прошло времени, мс (heap): " + elapsed6);
+
+
         System.out.println("Bubble matrix: "+ "\n");
         MatrixOperations.printMatrix(mBubble);
         System.out.println("SelectMatrix: "+ "\n");
@@ -43,6 +57,10 @@ public class Main {
         MatrixOperations.printMatrix(mShell);
         System.out.println("Tour MATRIX: " + "\n");
         MatrixOperations.printMatrix(mTour);
+        System.out.println("Quick MATRIX: " + "\n");
+        MatrixOperations.printMatrix(mQuick);
+        System.out.println("Heap MATRIX: " + "\n");
+        MatrixOperations.printMatrix(mHeap);
 
     }
 }
