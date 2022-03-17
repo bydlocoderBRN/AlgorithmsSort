@@ -1,4 +1,4 @@
-package Matrix;
+package Matrix.operations;
 
 public class MatrixGenerator {
     private int m; //строки
