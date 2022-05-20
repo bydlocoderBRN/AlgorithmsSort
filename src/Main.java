@@ -2,10 +2,13 @@
 import Matrix.find.BinaryFind;
 import Matrix.find.BinaryTreeFind;
 import Matrix.find.FibonacciFind;
+import Matrix.find.InterpolFind;
 import Matrix.operations.MatrixAsVector;
 import Matrix.operations.MatrixGeneral;
 import Matrix.operations.MatrixGenerator;
 import Matrix.sort.*;
+import Str.KnutMorrisPratt;
+import Str.Prefix;
 
 public class Main {
 
@@ -76,7 +79,11 @@ public class Main {
 //       for (int i =0; i<mas.length; i++){
 //           System.out.println(mas[i]);
 //       }
-        System.out.println(FibonacciFind.findFib(Shell.shellSort(matrix2020.getMatrix()), matrix2020.getElement(56)));
-
+//        System.out.println(InterpolFind.findInterpol(Shell.shellSort(matrix2020.getMatrix()), matrix2020.getElement(56)));
+//        int[] mas = Prefix.prefMassive("aabaabaaaabaabaaab");
+//        for(int i=0;i<mas.length;i++){
+//            System.out.println(mas[i]);
+//        }
+        System.out.println(KnutMorrisPratt.findStr("aabaabaaaabaabaaab", "baaaab"));
  }
 }
